@@ -59,7 +59,7 @@ void loop(void) {
 
   if (keyboard.available()) {
 
-    if (point_x <= 230) { //End of line threshhold
+    if (point_x <= 230) { //End of line threshold
       // read the next key
       char c = keyboard.read();
 
@@ -74,7 +74,7 @@ void loop(void) {
         setX(0);
         Serial.println();
         runCommand(TMP);
-        Serial.println("ENTETED: " + TMP);
+        Serial.println("ENTERED: " + TMP);
         TMP = "";
       } else if (c == PS2_DELETE) {
         Serial.print("[Del]");
@@ -161,7 +161,7 @@ void runCommand(String args) {
       fileFunct("read", temp);
       temp = "";
     } else {
-      Tft.drawString("Try: rfile file.txt", getX(), getY(), 1, RED);
+      Tft.drawString("Try doing: rfile file.txt", getX(), getY(), 1, RED);
       setY(getY() + 10);
       setX(0);
     }
@@ -176,7 +176,7 @@ void runCommand(String args) {
       fileFunct("list", temp);
       temp = "";
     } else {
-      Tft.drawString("Try: lfile -directory", getX(), getY(), 1, RED);
+      Tft.drawString("Try doing: lfile -directory", getX(), getY(), 1, RED);
       setY(getY() + 10);
       setX(0);
     }
@@ -187,8 +187,8 @@ void runCommand(String args) {
     Tft.fillRectangle(0, 0, 240, 320, BLACK);
     setX(0);
     setY(0);
-  }  else {
-    Tft.drawString("Unknown!", getX(), getY(), 1, RED);
+  } else {
+    Tft.drawString("Unknown command!", getX(), getY(), 1, RED);
     setY(getY() + 10);
     setX(0);
   }
@@ -223,17 +223,17 @@ void setY(int y) {
 }
 
 void help() {
-  Tft.drawString("Help:", getX(), getY(), 1, RED);
+  Tft.drawString("Command Help:", getX(), getY(), 1, RED);
   newLine();
-  Tft.drawString("-help | Shows commands", getX(), getY(), 1, RED);
+  Tft.drawString("-help   | Shows commands", getX(), getY(), 1, RED);
   newLine();
-  Tft.drawString("-rfile | reads file", getX(), getY(), 1, RED);
+  Tft.drawString("-rfile  | reads file", getX(), getY(), 1, RED);
   newLine();
-  Tft.drawString("-lfile | lists files in directory", getX(), getY(), 1, RED);
+  Tft.drawString("-lfile  | lists files in directory", getX(), getY(), 1, RED);
   newLine();
-  Tft.drawString("-reset | resets the device", getX(), getY(), 1, RED);
+  Tft.drawString("-reset  | resets the device", getX(), getY(), 1, RED);
   newLine();
-  Tft.drawString("-cls | clears the screen", getX(), getY(), 1, RED);
+  Tft.drawString("-cls    | clears the screen", getX(), getY(), 1, RED);
   newLine();
 }
 
@@ -260,8 +260,7 @@ void fileFunct(String args1, String args2) {
 
       file.close();
     }
-  } else
-  if (args1 == "list") {
+  } else if (args1 == "list") {
     printDirectory(SD.open(args2), 0);
   }
 }
